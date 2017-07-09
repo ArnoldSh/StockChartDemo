@@ -1,0 +1,17 @@
+{
+  "name": "StockChartDemo",
+  "version": "1.0.0",
+  "description": "Demo of Google Stock with D3.js",
+  "main": "gulpfile.js",
+  "license": "GPL",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-clean-css": "^3.0.3",
+    "pump": "^1.0.0"
+  },
+  "dependencies": {
+    "d3": "^4.0.0"
+  }
+}
