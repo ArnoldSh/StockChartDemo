@@ -1,0 +1,23 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="stock-chart-demo.min.css">
+</head>
+<body>
+<div id="app-wrapper">
+    <div id="selector-group-wrapper">
+        <select class="selector-group-content" id="time-period">
+            <option value="week">Week</option>
+            <option value="month" selected>Month</option>
+            <option value="quarter">Quarter</option>
+            <option value="year">Year</option>
+            <option value="max">Max</option>
+        </select>
+        <select class="selector-group-content" id="value-type">
+            <option value="price">Price</option>
+            <option value="spread">Spread</option>
+            <option value="volume">Volume</option>
+        </select>
+    </div>
+    <div id="chart-wrapper"></div>
+</div>
+<script src="stock-chart-demo.min.js"></script>
+</body>
