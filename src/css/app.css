@@ -1,26 +1,17 @@
-.axis {
-    font: 10px Roboto;
-}
-
-#selector-group-wrapper {
+#selector-group-wrapper, #chart-wrapper {
     padding: 5px 25px;
 }
 
-.selector-group-content {
-    font: 12px Roboto;
-}
-
-#chart-wrapper {
-    padding: 25px 25px;
-}
-
-.chart-content {
-    padding: 30px 60px;
-    height: 300px;
-    width: 600px;
-    max-height: 300px;
-    max-width: 600px;
+#chart-wrapper svg {
     border: 1px solid silver;
+}
+
+.axis {
+    font: 12px sans-serif;
+}
+
+.selector-group-content {
+    font: 14px sans-serif;
 }
 
 line, path {

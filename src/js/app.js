@@ -4,8 +4,15 @@
 
     var storedData = [];
 
-    var width = 600,
-        height = 300;
+    var margin = {
+        top: 30,
+        right: 30,
+        bottom: 30,
+        left: 50
+    };
+
+    var width = 700 - margin.left - margin.right,
+        height = 360 - margin.top - margin.bottom;
 
     var parseDate = d3.timeParse('%Y-%m-%d');
 
@@ -29,11 +36,12 @@
 
     var svg = d3.select('#chart-wrapper')
         .append('svg')
-        .attr('class', 'chart-content')
-        .attr('width', width)
-        .attr('height', height);
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
 
-    d3.csv('data.csv', function (error, data) {
+    d3.csv('https://raw.githubusercontent.com/ArnoldSh/StockChartDemo/master/src/data/data.csv', function (error, data) {
         data.reverse().forEach(function (item) {
             storedData.push({
                 'date': parseDate(item['Date']),
@@ -56,16 +64,16 @@
                 return yScale(item[valueType]);
             });
 
-        var itemsToSlice =  timePeriod === 'week' ? 7 :
+        var totalPoints =  timePeriod === 'week' ? 7 :
                             timePeriod === 'month' ? 30 :
                             timePeriod === 'quarter' ? 90 :
                             timePeriod === 'year' ? 365 :
                             timePeriod === 'max' ? storedData.length : 7;
 
-        var freq = Math.floor(itemsToSlice / MAX_CHART_POINTS) === 0 ? 1 : Math.floor(itemsToSlice / MAX_CHART_POINTS);
+        var freq = Math.floor(totalPoints / MAX_CHART_POINTS) === 0 ? 1 : Math.floor(totalPoints / MAX_CHART_POINTS);
         var sparseData = [];
 
-        storedData.slice(0, itemsToSlice).forEach(function (item, index) {
+        storedData.slice(0, totalPoints).forEach(function (item, index) {
             if (index % freq === 0) {
                 sparseData.push(item);
             }
@@ -73,11 +81,11 @@
 
         var bottomBound = d3.min(sparseData, function (item) {
                 return item[valueType];
-            }) * 0.99;
+            }) * 1;
 
         var topBound = d3.max(sparseData, function (item) {
                 return item[valueType];
-            }) * 1.01;
+            }) * 1;
 
         yMin = bottomBound;
         yMax = topBound;
